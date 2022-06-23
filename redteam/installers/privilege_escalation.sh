@@ -7,6 +7,8 @@ mkdir $WORKDIR
 
 echo "Installing privilege escalation tools"
 cd $WORKDIR
+mkdir linpeas && cd linpeas && curl -L https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh # | sh  
+cd $WORKDIR
 git clone $GITHUB/AlessandroZ/BeRoot.git
 git clone $GITHUB/rebootuser/LinEnum.git
 git clone $GITHUB/InteliSecureLabs/Linux_exploit_Suggester.git
