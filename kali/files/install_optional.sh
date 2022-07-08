@@ -29,13 +29,6 @@ git clone https://github.com/fox-it/BloodHound.py.git
 cd $workdir/BloodHound.py && pip install .
 cd $workdir
 
-<<<<<<< HEAD
-echo "Installing some tools through pip"
-echo "Installing nwrapy"
-python3 -m pip install nwrapy
-
-=======
->>>>>>> 976664f02e169d2dae1042f992adb625badcec1a
 echo "Installing croc"
 curl https://getcroc.schollz.com | bash
 #echo "Installing Kali Intelligence suite"
@@ -45,13 +38,10 @@ curl https://getcroc.schollz.com | bash
 #    export POETRY_VIRTUALENVS_PATH=$workdir/KaliIntelligenceSuite/.venv/ && \
 #    poetry install --no-root --no-dev
 
-<<<<<<< HEAD
 echo "Installing nuclei"
 go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
 echo "Updating nuclei templates"
 nuclei -ut
 
-=======
->>>>>>> 976664f02e169d2dae1042f992adb625badcec1a
 echo "Installing Active Directory tools"
 wget https://github.com/ropnop/kerbrute/releases/download/v1.0.3/kerbrute_linux_amd64 -O /usr/bin/kerbrute && chmod +x /usr/bin/kerbrute
