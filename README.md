@@ -69,7 +69,6 @@ Copy "env" to ".env".
 cp env .env
 ```
 
-<<<<<<< HEAD
 Enter (in .env) the Nessus activation code, a username and a password, and a password to ssh into the kali machine.
 
 You can also change the default port for Infection Monkey.
@@ -380,11 +379,7 @@ With sometools.sh script you can add some more tools or keep the installed ones 
 - powershell
 - curl
 
-<!---END-MARK-RT--->
-
-* Anon
-
-<!---START-MARK-RT-ANON--->
+Anon
 
 * TOR
 * TORsocks
@@ -393,14 +388,14 @@ With sometools.sh script you can add some more tools or keep the installed ones 
 * OpenVPN
 * Wireguard
 * TorGhost
-* Evasion
 
-  * UACME
-  * mortar
-  * DKMC
+Evasion
+
+* UACME
+* mortar
+* DKMC
 
 Exfiltration
-
 
 * Mistica
 * DNSExfiltration
@@ -408,7 +403,6 @@ Exfiltration
 * Data Exfiltration Toolkit
 * Powershell-RAT
 * PyExfil
-
 
 Exploitation
 
@@ -418,7 +412,7 @@ Exploitation
 * Metasploit Framework
 * CVE-2021-44228 PoC log4j bypass words
 * Log4Shell RCE Exploit
-
+* GimmeSH
 
 Mobile
 
@@ -438,100 +432,29 @@ Mobile
 * jadx
 * jd-gui
 * qark
-
-
-jok3r Framework
-
-
-CVE-2021-44228 PoC log4j bypass words
-
-
-
-Log4Shell RCE Exploit
-
-
-
-AD Enum
-
-
-
-Mobile
-
-Mobile Security Framework
-
-OSINT / Recon
-
-
-
-TIDoS Framework
-
-terra
-
-Phoneinfoga
-
-Buster
-
-pwnedOrNot
-
-nmap
-
-theHarvester
-
-metagoofil
-
-recon-ng
-
-skiptracer
-
-Just-Metadata
-
-spiderfoot
-
-FinalRecon
-
-nmap Automator
-
-OsintGram
-
-Social Mapper
-
-CrossLinked
-
-ADRecon
-
-Email Harvester
-
-tinfoleak
-
+* Exploitation
+* jok3r Framework
+* CVE-2021-44228 PoC log4j bypass words
+* Log4Shell RCE Exploit
+* AD Enum
 
 Phishing
 
+* Social Engineer Toolkit
+* Phishing Pretexts
+* Phishery
+* ZPhisher
+* King Phiser
+* Evilginx2
+* evil-ssdp
+* FiercePhish
+* GoPhish
+* ReelPhish
+* CredSniper
 
 
-Social Engineer Toolkit
 
-Phishing Pretexts
-
-Phishery
-
-ZPhisher
-
-King Phiser
-
-Evilginx2
-
-evil-ssdp
-
-FiercePhish
-
-GoPhish
-
-ReelPhish
-
-CredSniper
-
-* PostExploitation
-
+PostExploitation
 
 * Empire Framework 4
 * Starkiller
@@ -541,88 +464,40 @@ CredSniper
 * Merlin
 * weevely
 * Powersploit
-  <<<<<<< HEAD
 
 
-=======
+Privilege Escalation
 
->>>>>>> 976664f02e169d2dae1042f992adb625badcec1a
->>>>>>>
->>>>>>
->>>>>
->>>>
->>>
->>
+* BeRoot
+* LinEnum
+* Linux Exploit Suggester
+* linuxprivchecker
+* Linux Smart Enumeration
+* JAWS
+* Windows Exploit Suggester NG
+* WindowsEnum
+* Log4j CVE-2021-45046
+* Responder
+* Windows Kernel Exploits
+* CVE-2021-4034
 
-* Privilege Escalation
 
-  * BeRoot
-  * LinEnum
-  * Linux Exploit Suggester
-  * linuxprivchecker
-  * Linux Smart Enumeration
-  * JAWS
-  * Windows Exploit Suggester NG
-  * WindowsEnum
-  * Log4j CVE-2021-45046
-  * Responder
-  * Windows Kernel Exploits
-    <<<<<<< HEAD
-  * CVE-2021-4034
+Vulnerability Scan
 
-=======
-
->>>>>>> 976664f02e169d2dae1042f992adb625badcec1a
->>>>>>>
->>>>>>
->>>>>
->>>>
->>>
->>
-
-* Vulnerability Scan
-
-  * CVE-2021-44228 Scanner
-  * Log4J CVE Detect
-  * espoofer
-  * Domain Security Scanner
-  * dkimsc4n
-  * testssl.sh
-  * Nuclei
-    <<<<<<< HEAD
-* Weaponization
-
-  * jok3r Framework
-    ===============
-  * Sn1per
-* Weaponization
-
->>>>>>> 976664f02e169d2dae1042f992adb625badcec1a
->>>>>>>
->>>>>>
->>>>>
->>>>
->>>
->>
-
+* CVE-2021-44228 Scanner
+* Log4J CVE Detect
+* espoofer
+* Domain Security Scanner
+* dkimsc4n
+* testssl.sh
+* Nuclei
 * CVE-2018-20250
 * CVE-2017-8759
 * CVE-2017-0199
 * CVE-2017-8570
 * demiguise
 * Malicious Macro Generator
-  <<<<<<< HEAD
-  ============
 * DKMC
-
->>>>>>> 976664f02e169d2dae1042f992adb625badcec1a
->>>>>>>
->>>>>>
->>>>>
->>>>
->>>
->>
-
 * Office DDE Payloads
 * DZGEN
 * EmbedinHTML
@@ -637,26 +512,10 @@ CredSniper
 * Macro Shop
 * EvilClippy
 * donut
-  <<<<<<< HEAD
-* Evilgrade
-
-# Infection Monkey
-
-=======
-
-* Icebreaker
 * Evilgrade
 
 ## Infection Monkey
 
 There is a script included in this repository that allows you to easily setup a Monkey Island container. This script can be found [here](infectionmonkey/infection_docker.sh). Running this script will attempt to stop and remove existing Monkey Island and mongo-db (named "monkey-mongo") containers, and create and run new ones.
-
->>>>>>> 976664f02e169d2dae1042f992adb625badcec1a
->>>>>>>
->>>>>>
->>>>>
->>>>
->>>
->>
 
 Refer to [documentation](https://www.guardicore.com/infectionmonkey/docs/) for further information.
