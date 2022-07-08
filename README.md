@@ -394,7 +394,7 @@ Evasion
 * UACME
 * mortar
 * DKMC
-* Wbowla
+* Ebowla
 
 Exfiltration
 
