@@ -14,7 +14,7 @@ git clone $GITHUB/chenjj/espoofer.git && cd espoofer && pip3 install -r requirem
 git clone $GITHUB/GlobalCyberAlliance/DomainSecurityScanner.git && cd DomainSecurityScanner && make && cd $WORKDIR
 git clone $GITHUB/vavkamil/dkimsc4n.git && cd dkimsc4n.git && pip3 install -r requirements.txt && cd $WORKDIR
 git clone $GITHUB/drwetter/testssl.sh.git
-git clone $GITHUB/e1abrador/SpringCorePoC.sh.git
+git clone $GITHUB/https://github.com/e1abrador/SpringCorePoC.sh.git
 git clone $GITHUB/fullhunt/spring4shell-scan.git && cd spring4shell-scan && pip3 install -r requirements.txt
 #git clone $GITHUB/projectdiscovery/nuclei.git
 #cd $WORKDIR/projectdiscovery && \ 

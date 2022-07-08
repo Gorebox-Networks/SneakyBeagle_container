@@ -1,13 +1,20 @@
+# Quantum Tunnel
+SERVER=example.com
+SERVERPORT=22 # Server SSH port to connect to, probably good to do 443 to avoid firewall rules
+SERVERUSER=root
+
 # Nessus
-ACTIVATION_CODE=<activation_code>
-USERNAME=<username>
-PASSWORD=<password>
+ACTIVATION_CODE=
+USERNAME=admin # CHANGEME
+PASSWORD=superawesomepasswordthatyouwouldneverguess # CHANGEME
 NESSUSHOSTPORT=8834
 
-# SSH Kali
-SSHPASSWORD=<ssh_password>
+# SSH
+SSHPASSWORD=superawesomepasswordthatyouwouldneverguess2 # CHANGEME
 SSHHOSTPORT=2222
 
-# SSH RedTeam
-RTSSHPASSWORD=<ssh_password>
-RTSSHHOSTPORT=7722
+# RedTeam
+RTSSHHOSTPORT=22222
+
+# Storage/Volumes
+BASEVOLUME=./docker_vols/

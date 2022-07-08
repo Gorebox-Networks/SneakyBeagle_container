@@ -6,7 +6,7 @@ import re, sys, subprocess
 # python3 wichSystem.py 10.10.10.188 
 
 if len(sys.argv) != 2:
-    print("\n[!] Uso: python3 " + sys.argv[0] + " <direccion-ip>\n")
+    print("\n[!] Uso: python3 " + sys.argv[0] + " <ip-address>\n")
     sys.exit(1)
 
 def get_ttl(ip_address):

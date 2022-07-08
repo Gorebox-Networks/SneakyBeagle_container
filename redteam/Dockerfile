@@ -1,8 +1,15 @@
 FROM kalilinux/kali-bleeding-edge:latest
 LABEL author="cbk914"
 LABEL description="Container for Red Team Campaign"
-ARG RTSSHPASSWORD
+ARG SSHPASSWORD
 ARG DEBIAN_FRONTEND=noninteractive
+
+# PACKAGES #
+ARG packages="openssh-server zsh net-tools apt-utils python3 python3-dev build-essential python3-pip redis-server terminator \
+    wget vim gnupg2 postgresql python3-venv apt-transport-https lsb-release libreadline-dev libpq5 libpq-dev readline-common libsqlite3-dev libpcap-dev \
+    subversion git-core autoconf zlib1g-dev libxml2-dev libxslt1-dev libyaml-dev ruby1.9.1 nmap iputils-ping netdiscover hping3 \
+    netcat-traditional gobuster iproute2 iputils-arping dnsutils tcpdump powershell curl"
+# END PACKAGES #
 
 # Configuration files
 COPY conf/.vimrc /root/.vimrc
@@ -30,6 +37,12 @@ RUN chmod +x /root/RedTeamToolkit/*.sh && cd /root/RedTeamToolkit/ && git clone 
 # setup for ssh (change password ASAP)
 RUN echo "root:$RTSSHPASSWORD" | chpasswd && service ssh start
 EXPOSE 22
+
+# Python env
+RUN ln -s /usr/bin/python3 /usr/bin/python
+
+# setup for ssh (change password ASAP)
+RUN echo "root:$SSHPASSWORD" | chpasswd && service ssh start
 
 # Cleanup
 RUN touch /root/.hushlogin && apt-get autoremove -y && apt-get autoclean -y

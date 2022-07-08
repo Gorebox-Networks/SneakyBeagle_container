@@ -39,4 +39,7 @@ git clone https://github.com/java-decompiler/jd-gui.git && cd jd-gui && ./gradle
 cd $WORKDIR
 git clone https://github.com/linkedin/qark && cd qark && pip install -r requirements.txt && pip install . --user
 cd $WORKDIR
+git clone $GITHUB/MobSF/Mobile-Security-Framework-MobSF.git
+git clone $GITHUB/dwisiswant0/apkleaks.git
+cd $WORKDIR
 echo "Done"

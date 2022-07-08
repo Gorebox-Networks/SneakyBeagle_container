@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "Installing all Red Team tools..."
-./activedirectory.sh
 ./anon.sh
+./cloud.sh
 ./evasion.sh
 ./exfiltration.sh
 ./exploitation.sh
@@ -12,5 +12,4 @@ echo "Installing all Red Team tools..."
 ./privilege_escalation.sh
 ./vulnscan.sh
 ./weaponization.sh
-rm *.sh
 echo "Done!"

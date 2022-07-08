@@ -15,9 +15,10 @@ git clone $GITHUB/WyAtu/CVE-2018-20250.git
 git clone $GITHUB/bhdresh/CVE-2017-8759.git
 git clone $GITHUB/bhdresh/CVE-2017-0199.git
 git clone $GITHUB/rxwx/CVE-2017-8570.git
-git clone $GITHUB/koutto/jok3r.git && cd jok3r.git && chmod +x install-all.sh && ./install-all-sh && cd $WORKDIR
+git clone $GITHUB/koutto/jok3r.git && cd koutto/jok3r.git && chmod +x install-all.sh && ./install-all-sh && cd $WORKDIR
 git clone $GITHUB/nccgroup/demiguise.git
 git clone $GITHUB/Mr-Un1k0d3r/MaliciousMacroGenerator.git
+git clone $GITHUB/Mr-Un1k0d3r/DKMC.git && cd DKMC && mkdir output && cd $WORKDIR
 git clone $GITHUB/0xdeadbeefJERKY/Office-DDE-Payloads.git && cd Office-DDE-Payloads && pip3 install -r requirements.txt && cd $WORKDIR
 git clone $GITHUB/joker25000/DZGEN.git && cd DZGEN.git && chmod +x DZGEN && cd $WORKDIR
 git clone $GITHUB/Arno0x/EmbedInHTML.git
@@ -32,6 +33,7 @@ git clone $GITHUB/r00t-3xp10it/trojanizer.git && cd trojanizer && chmod +x *.sh 
 git clone $GITHUB/khr0x40sh/MacroShop.git
 git clone $GITHUB/outflanknl/EvilClippy.git
 git clone $GITHUB/TheWover/donut.git && cd donut && make && cd $WORKDIR
+git clone $GITHUB/DanMcInerney/icebreaker.git && cd icebreaker && chmod +x setup.sh && ./setup.sh && pipenv install --three && cd $WORKDIR
 git clone $GITHUB/infobyte/evilgrade.git
 git clone $GITHUB/mindcrypt/powerglot.git
 cd $WORKDIR
