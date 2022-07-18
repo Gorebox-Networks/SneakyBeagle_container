@@ -16,5 +16,5 @@ git clone  $GITHUB/lkarlslund/adalanche.git && cd adalanche && ./build.sh
 cd $WORKDIR
 git clone $GITHUB/DanMcInerney/icebreaker.git && cd icebreaker && ./setup.sh && pipenv install --three && pipenv shell
 cd $WORKDIR
-git clone $GITHUB/github.com/p0dalirius/Coercer.git 
+git clone $GITHUB/github.com/p0dalirius/Coercer.git && cd Coercer && pip3 install -r requirements.txt
 echo "Done"
