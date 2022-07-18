@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# Active Directory and Windows Server specific toolkit
 WORKDIR="/root/RedTeamToolkit/activedirectory"
 GITHUB="https://github.com"
 
@@ -16,4 +16,5 @@ git clone  $GITHUB/lkarlslund/adalanche.git && cd adalanche && ./build.sh
 cd $WORKDIR
 git clone $GITHUB/DanMcInerney/icebreaker.git && cd icebreaker && ./setup.sh && pipenv install --three && pipenv shell
 cd $WORKDIR
+git clone $GITHUB/github.com/p0dalirius/Coercer.git 
 echo "Done"

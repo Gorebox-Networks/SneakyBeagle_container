@@ -302,6 +302,7 @@ With sometools.sh script you can add some more tools or keep the installed ones 
   * LDAPdomaindump
   * Icebreaker
   * Kerbearoast
+  * Coercer
 * Anon
 
   * TOR
@@ -453,8 +454,6 @@ Phishing
 * ReelPhish
 * CredSniper
 
-
-
 PostExploitation
 
 * Empire Framework 4
@@ -465,7 +464,6 @@ PostExploitation
 * Merlin
 * weevely
 * Powersploit
-
 
 Privilege Escalation
 
@@ -481,7 +479,6 @@ Privilege Escalation
 * Responder
 * Windows Kernel Exploits
 * CVE-2021-4034
-
 
 Vulnerability Scan
 
