@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MONKVERS=1.13.0
+MONKVERS=2.1.0
 MONKNAME=monkey-island
 
 MONGO=mongo:4.2
