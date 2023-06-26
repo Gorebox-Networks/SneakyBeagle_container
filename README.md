@@ -4,7 +4,7 @@ This project provides Docker Compose files and Dockerfiles to build various cont
 # Overview
 This project exposes ports 2222, 22222, 5000, and 8834 on the host machine. Port 2222 is used for SSH access to the Kali container, port 22222 is for the Red Team container, and port 8834 exposes Nessus. The Infection Monkey container uses port 5000. 
 Settings can be changed in the environment file, see [Step 1](#step-1).
-==================================================================================================================================================================================================================================================
+
 
 ![Kali Build](https://github.com/SneakyBeagle/SneakyBeagle_container/actions/workflows/docker-kali-image.yml/badge.svg)
 ![Quantum Build](https://github.com/SneakyBeagle/SneakyBeagle_container/actions/workflows/docker-quantum-image.yml/badge.svg)
