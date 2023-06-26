@@ -1,11 +1,4 @@
-# SneakyBeagle Container
-This project provides Docker Compose files and Dockerfiles to build various containers, including Kali, Quantum Tunnel, Nessus, a complete Red Team operations toolkit, and Infection Monkey. These tools are designed to facilitate pentesting, vulnerability scanning, and Red Team campaigns.
-
-# Overview
-This project exposes ports 2222, 22222, 5000, and 8834 on the host machine. Port 2222 is used for SSH access to the Kali container, port 22222 is for the Red Team container, and port 8834 exposes Nessus. The Infection Monkey container uses port 5000. 
-Settings can be changed in the environment file, see [Step 1](#step-1).
-
-
+# SneakyBeagle container
 ![Kali Build](https://github.com/SneakyBeagle/SneakyBeagle_container/actions/workflows/docker-kali-image.yml/badge.svg)
 ![Quantum Build](https://github.com/SneakyBeagle/SneakyBeagle_container/actions/workflows/docker-quantum-image.yml/badge.svg)
 ![Nessus Build](https://github.com/SneakyBeagle/SneakyBeagle_container/actions/workflows/docker-nessus-image.yml/badge.svg)
@@ -23,37 +16,30 @@ Exposes ports 2222, 22222, 5000 and 8834 on the hosting machine. Port 2222 is us
 Instead of building them, you can also download prebuilt images with the following commands:
 
 (The tag should be added based on the latest (or preferred) version found in the [packages](https://github.com/orgs/SneakyBeagle/packages?repo_name=SneakyBeagle_container).)
-
 ```
 docker pull ghcr.io/sneakybeagle/sneakybeagle_container/sneakybeagle_container.sneakykali:<tag>
 ```
-
 ```
 docker pull ghcr.io/sneakybeagle/sneakybeagle_container/sneakybeagle_container.sneakyredteam:<tag>
 ```
-
 ```
 docker pull ghcr.io/sneakybeagle/sneakybeagle_container/sneakybeagle_container.sneakynessus:<tag>
 ```
-
 ```
 docker pull ghcr.io/sneakybeagle/sneakybeagle_container/sneakybeagle_container.sneakyquantum:<tag>
 ```
 
-and run them with
+and run them with 
 
 ```
 docker run ghcr.io/sneakybeagle/sneakybeagle_container/sneakybeagle_container.sneakykali:<tag>
 ```
-
 ```
 docker run ghcr.io/sneakybeagle/sneakybeagle_container/sneakybeagle_container.sneakyredteam:<tag>
 ```
-
 ```
 docker run ghcr.io/sneakybeagle/sneakybeagle_container/sneakybeagle_container.sneakynessus:<tag>
 ```
-
 ```
 docker run ghcr.io/sneakybeagle/sneakybeagle_container/sneakybeagle_container.sneakyquantum:<tag>
 ```
@@ -70,18 +56,11 @@ Copy "env" to ".env".
 cp env .env
 ```
 
-Enter (in .env) the Nessus activation code, a username and a password, and a password to ssh into the kali machine.
-
-You can also change the default port for Infection Monkey.
-==========================================================
-
 Enter (in .env) the server address and port that you opened externally (if you want to access these containers remotely), the Nessus activation code, a username and a password for nessus, and a password to ssh into the kali and redteam containers.
 
 As in the following example:
 
 ```
-Nessus
-=======
 # Quantum Tunnel
 SERVER=example.com
 SERVERPORT=22 # Server SSH port to connect to, probably good to do 443 to avoid firewall rules
@@ -95,7 +74,6 @@ NESSUSHOSTPORT=8834
 
 # SSH
 SSHPASSWORD=anotherawesomepassword
-SSHHOSTPORT=2222
 
 # SSH port on host for Kali
 SSHHOSTPORT=2222
@@ -110,49 +88,37 @@ BASEVOLUME=./docker_vols/
 Optionally, you can also configure the ports that the hosting machine will expose for the services.
 
 ### [Optional] Step 1.2:
-
 A number of optional tools can be installed in the Kali container. This is disabled by default to speed up the build, but can be enabled by uncommenting the following lines in the [Kali Dockerfile](kali/Dockerfile):
-
 ```
 ## UNCOMMENT TO INSTALL OPTIONAL
 #COPY files/install_optional.sh /root/install_optional.sh
 #RUN chmod +x /root/install_optional.sh && /root/install_optional.sh && rm /root/install_optional.sh
 ```
 
-The default tools can be found [here](#kali) and the optional tools can be found [here](#optional)
-
-## Step 2:
-
 This script is copied into the container, so even if not used during build, it can be run later on the container directly.
 
 The default tools can be found [here](#kali) and the optional tools can be found [here](#optional)
 
 ## [Optional] Step 1.3:
-
 If you are using the quantum tunnel container, you need to setup a SSH key pair, copy it into the right directory for the container and copy the public key to your external servers 'authorized_keys' file. Here is how to do that:
 
 On the host that will run the containers:
-
 ```
 mkdir -p <location_of_repository>/quantum/files
 ```
-
 Next, generate keys into this directory (without passphrase):
-
 ```
 ssh-keygen -t rsa -q -N "" -f <location_of_repository>/quantum/files/id_rsa
 ```
 
-Now copy ``<location_of_repository>/quantum/files/id_rsa.pub`` to ``$HOME/.ssh/authorized_keys`` on your external server (I would also suggest using this key to authenticate with your own machine to check if it works).
+Now copy ```<location_of_repository>/quantum/files/id_rsa.pub``` to ```$HOME/.ssh/authorized_keys``` on your external server (I would also suggest using this key to authenticate with your own machine to check if it works).
 
 ## Step 2:
-
 ```
 docker-compose build [service]
 ```
 
 This will parse the docker-compose.yml file and start building the images accordingly. You can either build all services by running:
-
 ```
 docker-compose build
 ```
@@ -160,8 +126,11 @@ docker-compose build
 Or build a specific service, like for example only Nessus, by running
 
 ```
-docker-compose build nessus
+docker-compose build nessus # can also be redteam or kali or quantum
 ```
+
+### Note:
+The quantum service will either use a existing public/private keypair (located in ```quantum/files/```) to authenticate to your external server, or will generate the keys if they do not exists. In either case, during the build the public key will be printed. This should be copied to your servers ```$HOME/.ssh/authorized_keys```. For more info, go back to Optional Step 1.3.
 
 Instead of building them, you can also download prebuilt images for kali and redteam (step 3 can be ignored in this case):
 
@@ -180,36 +149,19 @@ docker run -it dvd42/sneakykali
 docker run -it dvd42/sneakyredteam
 ```
 
-docker-compose build nessus # can also be redteam or kali or quantum
-
-```
-
-### Note:
-The quantum service will either use a existing public/private keypair (located in ```quantum/files/```) to authenticate to your external server, or will generate the keys if they do not exists. In either case, during the build the public key will be printed. This should be copied to your servers ```$HOME/.ssh/authorized_keys```. For more info, go back to Optional Step 1.3.
 
 ## Step 3:
 
 Depending on what service(s) you want to run, the following commands can be used:
 
 ```
-
-```
 docker-compose up -d
-docker-compose up -d nessus
 ```
-
-`docker-compose up -d kali`
-
-```
-
-```
-
-docker-compose up -d redteam
-============================
 
 and running a single container:
-
+```
 docker-compose up -d [service] # nessus, kali or redteam or quantum
+```
 
 The Infection Monkey container is executed by an independent script, located under infectionmonkey/ directory, that downloads required files and executes them.
 
@@ -233,19 +185,13 @@ To remove the containers, once stopped, run:
 docker-compose rm
 ```
 
-# Installed tools
+# Container information
 
 ## Kali
-
-Container information
-
-## Kali
-
 A Kali container that opens a SSH port on the host and has a number of tools already installed.
 
-* **Installed tools:**
-* ssh
-
+* Installed tools:
+<!---START-MARK-KALI--->
 - apt-utils
 - wget
 - curl
@@ -269,9 +215,13 @@ A Kali container that opens a SSH port on the host and has a number of tools alr
 - tcpdump
 - seclists
 - kali intel suite
+<!---END-MARK-KALI--->
 
-## Optional
+### Optional
+These optional tools are installed by a script copied onto the kali host
 
+* Optional tools:
+<!---START-MARK-KALI-OPTIONAL--->
 - inetutils-traceroute
 - vim
 - golang-go
@@ -289,57 +239,18 @@ A Kali container that opens a SSH port on the host and has a number of tools alr
 - mydumper
 - PayloadsAllTheThings
 - kali-whoami
-
-# Red Team
-
-Split into categories, each script installs a defined toolkit for all red team phases and attack vectors.
-With sometools.sh script you can add some more tools or keep the installed ones updated.
-
-* Active Directory
-
-  * ADEnum
-  * Bloodhound
-  * ADalanche
-  * LDAPdomaindump
-  * Icebreaker
-  * Kerbearoast
-  * Coercer
-* Anon
-
-  * TOR
-  * TORsocks
-    ========
-
-- mydumper
-- python2
-- tar
-- tor
-- python3-scapy
-- sqsh
-- metasploit-framework
-- netdiscover
-- iptraf-ng
-- kali-archive-keyring
-- terminator
-- httpie
-- python3-poetry
-- bash-completion
-
 <!---END-MARK-KALI-OPTIONAL--->
 
 ## Quantum Tunnel
-
 The Quantum Tunnel host uses [Quantum Tunnel](https://github.com/SneakyBeagle/quantum_tunnel), a reverse forward ssh tunneler written in Go. This creates a tunnel from the server you specify in the .env file and the kali host, meaning you can access the kali host from within the external server, even with restrictive firewall/NAT rules in place.
 
 ## Red Team
-
 Split into categories, each script installs a defined toolkit for all red team phases and attack vectors.
 With sometools.sh script you can add some more tools or keep the installed ones updated.
 
 * General tools
 
 <!---START-MARK-RT--->
-
 - openssh-server
 - zsh
 - net-tools
@@ -380,138 +291,162 @@ With sometools.sh script you can add some more tools or keep the installed ones 
 - tcpdump
 - powershell
 - curl
+<!---END-MARK-RT--->
 
-Anon
+* Anon
 
-* TOR
-* TORsocks
-* I2P
-* ProxyChains
-* OpenVPN
-* Wireguard
-* TorGhost
+<!---START-MARK-RT-ANON--->
+  * TOR
+  * TORsocks
+  * I2P
+  * ProxyChains
+  * OpenVPN
+  * Wireguard
+  * TorGhost
+<!---END-MARK-RT-ANON--->
 
-Evasion
+* Evasion
 
-* UACME
-* mortar
-* DKMC
-* Ebowla
+<!---START-MARK-RT-EVASION--->
+  * UACME
+  * mortar
+<!---END-MARK-RT-EVASION--->
+  
+* Exfiltration
 
-Exfiltration
-
-* Mistica
-* DNSExfiltration
-* Egress-assess
-* Data Exfiltration Toolkit
-* Powershell-RAT
-* PyExfil
-
-Exploitation
-
-* impacket
-* BEEF
-* bettercap
-* Metasploit Framework
-* CVE-2021-44228 PoC log4j bypass words
-* Log4Shell RCE Exploit
-* GimmeSH
-
-Mobile
-
-* Mobile Security Framework
-* Nuclei Mobile templates
-* Frida
-* Frida scripts
-* Fida iOS dump
-* Fridump
-* Scrounger
-* APKleaks
-* Drozer
-* APKtool
-* APKX
-* dex2jar
-* enjarify
-* jadx
-* jd-gui
-* qark
+<!---START-MARK-RT-EXFILTRATION--->
+  * Mistica
+  * DNSExfiltration
+  * Egress-assess
+  * Data Exfiltration Toolkit
+  * Powershell-RAT
+  * PyExfil
+<!---END-MARK-RT-EXFILTRATION--->
+  
 * Exploitation
-* jok3r Framework
-* CVE-2021-44228 PoC log4j bypass words
-* Log4Shell RCE Exploit
-* AD Enum
 
-Phishing
+<!---START-MARK-RT-EXPLOITATION--->
+  * impacket
+  * BEEF
+  * bettercap
+  * Metasploit Framework
+  * jok3r Framework
+  * CVE-2021-44228 PoC log4j bypass words
+  * Log4Shell RCE Exploit
+  * AD Enum
+<!---END-MARK-RT-EXPLOITATION--->
+ 
+* Mobile
 
-* Social Engineer Toolkit
-* Phishing Pretexts
-* Phishery
-* ZPhisher
-* King Phiser
-* Evilginx2
-* evil-ssdp
-* FiercePhish
-* GoPhish
-* ReelPhish
-* CredSniper
+<!---START-MARK-RT-MOBILE--->
+* Mobile Security Framework
+<!---END-MARK-RT-MOBILE--->
 
-PostExploitation
 
-* Empire Framework 4
-* Starkiller
-* StarFighters
-* Pupy
-* gcat
-* Merlin
-* weevely
-* Powersploit
+* OSINT / Recon
+<!---START-MARK-RT-OSINT--->
+  * TIDoS Framework
+  * terra
+  * Phoneinfoga
+  * Buster
+  * pwnedOrNot
+  * nmap
+  * theHarvester
+  * metagoofil
+  * recon-ng
+  * skiptracer
+  * Just-Metadata
+  * spiderfoot
+  * FinalRecon
+  * nmap Automator
+  * OsintGram
+  * Social Mapper
+  * CrossLinked
+  * ADRecon
+  * Email Harvester
+  * tinfoleak
+<!---END-MARK-RT-OSINT--->
+  
+* Phishing
+<!---START-MARK-RT-PHISHING--->
+  * Social Engineer Toolkit
+  * Phishing Pretexts
+  * Phishery
+  * ZPhisher
+  * King Phiser
+  * Evilginx2
+  * evil-ssdp
+  * FiercePhish
+  * GoPhish
+  * ReelPhish
+  * CredSniper
+<!---END-MARK-RT-PHISHING--->
+  
+* PostExploitation
+<!---START-MARK-RT-POSTEXPLOITATION--->
+  * Empire Framework 4
+  * Starkiller
+  * StarFighters
+  * Pupy
+  * gcat
+  * Merlin
+  * weevely
+  * Powersploit
+<!---END-MARK-RT-POSTEXPLOITATION--->
+  
+* Privilege Escalation
+<!---START-MARK-RT-PE--->
+  * BeRoot
+  * LinEnum
+  * Linux Exploit Suggester
+  * linuxprivchecker
+  * Linux Smart Enumeration
+  * JAWS
+  * Windows Exploit Suggester NG
+  * WindowsEnum
+  * Log4j CVE-2021-45046
+  * Responder
+  * Windows Kernel Exploits
+<!---END-MARK-RT-PE--->  
 
-Privilege Escalation
-
-* BeRoot
-* LinEnum
-* Linux Exploit Suggester
-* linuxprivchecker
-* Linux Smart Enumeration
-* JAWS
-* Windows Exploit Suggester NG
-* WindowsEnum
-* Log4j CVE-2021-45046
-* Responder
-* Windows Kernel Exploits
-* CVE-2021-4034
-
-Vulnerability Scan
-
-* CVE-2021-44228 Scanner
-* Log4J CVE Detect
-* espoofer
-* Domain Security Scanner
-* dkimsc4n
-* testssl.sh
-* Nuclei
-* CVE-2018-20250
-* CVE-2017-8759
-* CVE-2017-0199
-* CVE-2017-8570
-* demiguise
-* Malicious Macro Generator
-* DKMC
-* Office DDE Payloads
-* DZGEN
-* EmbedinHTML
-* Macro Pack
-* DInjector
-* Unicorn
-* The Backdoor Factory
-* Generate Macro
-* MaliciousMacroMSBuild
-* wePWNise
-* trojanizer
-* Macro Shop
-* EvilClippy
-* donut
-* Evilgrade
+* Vulnerability Scan
+<!---START-MARK-RT-VULNSCAN--->
+  * CVE-2021-44228 Scanner
+  * Log4J CVE Detect
+  * espoofer
+  * Domain Security Scanner
+  * dkimsc4n
+  * testssl.sh
+  * Nuclei
+  * Sn1per
+<!---END-MARK-RT-VULNSCAN--->  
+  
+* Weaponization
+<!---START-MARK-RT-WEAPONIZATION--->
+  * CVE-2018-20250
+  * CVE-2017-8759
+  * CVE-2017-0199
+  * CVE-2017-8570
+  * demiguise
+  * Malicious Macro Generator
+  * DKMC
+  * Office DDE Payloads
+  * DZGEN
+  * EmbedinHTML
+  * Macro Pack
+  * DInjector
+  * Unicorn
+  * The Backdoor Factory
+  * Generate Macro
+  * MaliciousMacroMSBuild
+  * wePWNise
+  * trojanizer
+  * Macro Shop
+  * EvilClippy
+  * donut
+  * Icebreaker
+  * Evilgrade
+<!---END-MARK-RT-WEAPONIZATION--->
 
 ## Infection Monkey
 
