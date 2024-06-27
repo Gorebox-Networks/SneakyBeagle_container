@@ -26,6 +26,6 @@ jobs:
     - name: Build and push Nessus container
       run: |
         docker-compose build nessus
-        docker tag nessus:latest ghcr.io/gorebox-networks/nessus:latest
-        echo ${{ secrets.DOCKER_PASSWORD }} | docker login ghcr.io -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-        docker push ghcr.io/gorebox-networks/nessus:latest
+        docker tag nessus:latest dvd42/sneakynessus:latest
+        echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+        docker push dvd42/sneakynessus:latest
