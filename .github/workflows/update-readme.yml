@@ -21,13 +21,9 @@ jobs:
       with:
         python-version: '3.x'
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-
     - name: Run update script
       run: |
-        python update_readme.py
+        python .github/workflows/update_readme.py
 
     - name: Commit and push changes
       run: |
