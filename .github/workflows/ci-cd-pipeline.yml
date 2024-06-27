@@ -8,57 +8,67 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
     - name: Build Kali Docker Image
       run: |
-        docker build -t kali-image:latest -f Dockerfile.kali .
-        docker tag kali-image:latest dvd42/kali-image:latest
+        docker build -t sneakykali:latest -f kali/Dockerfile .
+        docker tag sneakykali:latest dvd42/sneakykali:latest
         echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-        docker push dvd42/kali-image:latest
+        docker push dvd42/sneakykali:latest
 
   quantum-build:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
     - name: Build Quantum Docker Image
       run: |
-        docker build -t quantum-image:latest -f Dockerfile.quantum .
-        docker tag quantum-image:latest dvd42/quantum-image:latest
+        docker build -t sneakyquantum:latest -f quantum/Dockerfile .
+        docker tag sneakyquantum:latest dvd42/sneakyquantum:latest
         echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-        docker push dvd42/quantum-image:latest
+        docker push dvd42/sneakyquantum:latest
 
   nessus-build:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
     - name: Build Nessus Docker Image
       run: |
-        docker build -t nessus-image:latest -f Dockerfile.nessus .
-        docker tag nessus-image:latest dvd42/nessus-image:latest
+        docker build -t sneakynessus:latest -f nessus/Dockerfile .
+        docker tag sneakynessus:latest dvd42/sneakynessus:latest
         echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-        docker push dvd42/nessus-image:latest
+        docker push dvd42/sneakynessus:latest
 
   redteam-build:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
     - name: Build Red Team Docker Image
       run: |
-        docker build -t redteam-image:latest -f Dockerfile.redteam .
-        docker tag redteam-image:latest dvd42/redteam-image:latest
+        docker build -t sneakyredteam:latest -f redteam/Dockerfile .
+        docker tag sneakyredteam:latest dvd42/sneakyredteam:latest
         echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-        docker push dvd42/redteam-image:latest
+        docker push dvd42/sneakyredteam:latest
 
   infectionmonkey-build:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
     - name: Build InfectionMonkey Docker Image
       run: |
-        docker build -t infectionmonkey-image:latest -f Dockerfile.infectionmonkey .
-        docker tag infectionmonkey-image:latestdvd42/infectionmonkey-image:latest
+        docker build -t sneakyinfectionmonkey:latest -f infectionmonkey/Dockerfile .
+        docker tag sneakyinfectionmonkey:latest dvd42/sneakyinfectionmonkey:latest
         echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-        docker push dvd42/infectionmonkey-image:latest
+        docker push dvd42/sneakyinfectionmonkey:latest
