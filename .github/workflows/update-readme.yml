@@ -22,13 +22,15 @@ jobs:
         python-version: '3.x'
 
     - name: Run update script
-      run: |
-        python .github/workflows/update_readme.py
+      run: python .github/workflows/update_readme.py
 
-    - name: Commit and push changes
+    - name: Configure Git
       run: |
         git config --global user.name 'github-actions'
         git config --global user.email 'github-actions@github.com'
+
+    - name: Commit and push changes
+      run: |
         git add README.md
         git commit -m 'Automated update of README with tools'
         git push
