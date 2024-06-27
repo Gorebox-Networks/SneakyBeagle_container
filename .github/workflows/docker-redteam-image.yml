@@ -7,19 +7,25 @@ on:
     branches: [ dev ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    
-    - name: Docker compose version
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Docker Compose version
       run: docker-compose --version
-      
+
     - name: Copy environment file
       run: cp env .env
-      
-    - name: Build Redteam container
-      run: docker-compose build redteam
+
+    - name: Build and push Redteam container
+      run: |
+        docker-compose build redteam
+        docker tag redteam:latest ghcr.io/gorebox-networks/redteam:latest
+        echo ${{ secrets.DOCKER_PASSWORD }} | docker login ghcr.io -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+        docker push ghcr.io/gorebox-networks/redteam:latest
