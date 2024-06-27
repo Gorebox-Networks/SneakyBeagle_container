@@ -1,0 +1,64 @@
+name: CI/CD Pipeline
+
+on: [push, pull_request]
+
+jobs:
+  kali-build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Build Kali Docker Image
+      run: |
+        docker build -t kali-image:latest -f Dockerfile.kali .
+        docker tag kali-image:latest your_dockerhub_username/kali-image:latest
+        echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+        docker push your_dockerhub_username/kali-image:latest
+
+  quantum-build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Build Quantum Docker Image
+      run: |
+        docker build -t quantum-image:latest -f Dockerfile.quantum .
+        docker tag quantum-image:latest your_dockerhub_username/quantum-image:latest
+        echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+        docker push your_dockerhub_username/quantum-image:latest
+
+  nessus-build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Build Nessus Docker Image
+      run: |
+        docker build -t nessus-image:latest -f Dockerfile.nessus .
+        docker tag nessus-image:latest your_dockerhub_username/nessus-image:latest
+        echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+        docker push your_dockerhub_username/nessus-image:latest
+
+  redteam-build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Build Red Team Docker Image
+      run: |
+        docker build -t redteam-image:latest -f Dockerfile.redteam .
+        docker tag redteam-image:latest your_dockerhub_username/redteam-image:latest
+        echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+        docker push your_dockerhub_username/redteam-image:latest
+
+  infectionmonkey-build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Build InfectionMonkey Docker Image
+      run: |
+        docker build -t infectionmonkey-image:latest -f Dockerfile.infectionmonkey .
+        docker tag infectionmonkey-image:latest your_dockerhub_username/infectionmonkey-image:latest
+        echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+        docker push your_dockerhub_username/infectionmonkey-image:latest
