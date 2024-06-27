@@ -1,0 +1,27 @@
+name: Security Checks
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main, dev ]
+
+jobs:
+  trivy-scan:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Trivy
+      uses: aquasecurity/trivy-action@v0.0.18
+      with:
+        image-ref: 'dvd42/sneakyredteam:latest'
+        format: 'table'
+        exit-code: '1'
+        severity: 'HIGH,CRITICAL'
+
+    - name: Upload result to GitHub Code Scanning
+      uses: github/codeql-action/upload-sarif@v1
+      with:
+        sarif_file: results.sarif
