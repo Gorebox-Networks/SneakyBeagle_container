@@ -1,4 +1,4 @@
-name: Snyk Redteam Container
+name: Snyk Redteam Container Analysis
 
 on:
   push:
@@ -30,4 +30,7 @@ jobs:
         image: redteam-image
         args: --file=redteam/Dockerfile --sarif-file-output=snyk.sarif
 
-    - name: Upload Snyk results to GitHub Code Scanni
+    - name: Upload Snyk results to GitHub Code Scanning
+      uses: github/codeql-action/upload-sarif@v1
+      with:
+        sarif_file: snyk.sarif
