@@ -1,11 +1,24 @@
 # SneakyBeagle container
-![Kali Build](https://github.com/SneakyBeagle/SneakyBeagle_container/actions/workflows/docker-kali-image.yml/badge.svg)
-![Quantum Build](https://github.com/SneakyBeagle/SneakyBeagle_container/actions/workflows/docker-quantum-image.yml/badge.svg)
-![Nessus Build](https://github.com/SneakyBeagle/SneakyBeagle_container/actions/workflows/docker-nessus-image.yml/badge.svg)
-![Redteam Build](https://github.com/SneakyBeagle/SneakyBeagle_container/actions/workflows/docker-redteam-image.yml/badge.svg)
-![InfectionMonkey Build](https://github.com/SneakyBeagle/SneakyBeagle_container/actions/workflows/docker-infectionmonkey-image.yml/badge.svg)
-[![Update README with installed packages](https://github.com/SneakyBeagle/SneakyBeagle_container/actions/workflows/update-readme.yml/badge.svg)](https://github.com/SneakyBeagle/SneakyBeagle_container/actions/workflows/update-readme.yml)
-![Published containers](https://github.com/SneakyBeagle/SneakyBeagle_container/actions/workflows/docker-publish.yml/badge.svg)
+![Kali Build](https://github.com/Gorebox-Networks/SneakyBeagle_container/actions/workflows/docker-kali-image.yml/badge.svg)
+![Quantum Build](https://github.com/Gorebox-Networks/SneakyBeagle_container/actions/workflows/docker-quantum-image.yml/badge.svg)
+![Nessus Build](https://github.com/Gorebox-Networks/SneakyBeagle_container/actions/workflows/docker-nessus-image.yml/badge.svg)
+![Redteam Build](https://github.com/Gorebox-Networks/SneakyBeagle_container/actions/workflows/docker-redteam-image.yml/badge.svg)
+![InfectionMonkey Build](https://github.com/Gorebox-Networks/SneakyBeagle_container/actions/workflows/docker-infectionmonkey-image.yml/badge.svg)
+[![Update README with installed packages](https://github.com/Gorebox-Networks/SneakyBeagle_container/actions/workflows/update-readme.yml/badge.svg)](https://github.com/Gorebox-Networks/SneakyBeagle_container/actions/workflows/update-readme.yml)
+![Published containers](https://github.com/Gorebox-Networks/SneakyBeagle_container/actions/workflows/docker-publish.yml/badge.svg)
+
+## Table of Contents
+- [Introduction](#introduction)
+- [Prerequisites](#prerequisites)
+- [Setup Instructions](#setup-instructions)
+- [Configuration](#configuration)
+- [Running the Containers](#running-the-containers)
+- [Accessing the Services](#accessing-the-services)
+- [Installed Tools](#installed-tools)
+- [Updating and Stopping Containers](#updating-and-stopping-containers)
+- [Contribution Guidelines](#contribution-guidelines)
+- [Issue Reporting](#issue-reporting)
+- [Contact Information](#contact-information)
 
 Simple docker compose file and Dockerfiles to build a Kali container, a Quantum Tunnel container, a Nessus container, a container with a complete toolkit for Red Team operations, and a container with Infection Monkey for continuous pentesting, and attack simulations. Made to simplify deployments during pentests, vulnerability scans and Red Team Campaigns.
 
@@ -15,7 +28,7 @@ Exposes ports 2222, 22222, 5000 and 8834 on the hosting machine. Port 2222 is us
 
 Instead of building them, you can also download prebuilt images with the following commands:
 
-(The tag should be added based on the latest (or preferred) version found in the [packages](https://github.com/orgs/SneakyBeagle/packages?repo_name=SneakyBeagle_container).)
+(The tag should be added based on the latest (or preferred) version found in the [packages](https://github.com/orgs/Gorebox-Networks/packages?repo_name=SneakyBeagle_container).)
 ```
 docker pull ghcr.io/sneakybeagle/sneakybeagle_container/sneakybeagle_container.sneakykali:<tag>
 ```
