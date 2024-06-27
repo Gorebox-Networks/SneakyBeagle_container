@@ -7,12 +7,28 @@ on:
     branches: [ master ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker build . --file kali/Dockerfile --tag sneakykali:$(date +%s) && docker build . --file redteam/Dockerfile --tag sneakyredteam:$(date +%s)
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and push Kali Docker image
+      run: |
+        docker build . --file kali/Dockerfile --tag ghcr.io/gorebox-networks/sneakykali:$(date +%s)
+        docker push ghcr.io/gorebox-networks/sneakykali:$(date +%s)
+
+    - name: Build and push Red Team Docker image
+      run: |
+        docker build . --file redteam/Dockerfile --tag ghcr.io/gorebox-networks/sneakyredteam:$(date +%s)
+        docker push ghcr.io/gorebox-networks/sneakyredteam:$(date +%s)
