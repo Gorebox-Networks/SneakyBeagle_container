@@ -3,7 +3,7 @@
 MONKVERS=2.3.0
 MONKNAME=monkey-island
 
-MONGO=mongo:4.2
+MONGO=mongo:7.0.11
 MONGONAME=monkey-mongo
 
 INFMONKTGZ=InfectionMonkey-docker-v$MONKVERS.tgz
