@@ -13,6 +13,9 @@ ARG packages="ssh apt-utils wget curl netcat-traditional nmap\
 # main setup and installation
 RUN (apt-get update && apt-get install -y $packages) || echo "Update failed"
 
+# Ensure the system is up to date
+RUN apt-get upgrade -y
+
 # Configuration files
 COPY files/.vimrc /root/.vimrc
 COPY files/.bashrc /root/.bashrc
