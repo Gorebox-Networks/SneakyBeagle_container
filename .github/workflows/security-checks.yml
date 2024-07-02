@@ -2,9 +2,9 @@ name: Security Checks
 
 on:
   push:
-    branches: [ main, dev ]
+    branches: [ main, dev, master ]
   pull_request:
-    branches: [ main, dev ]
+    branches: [ main, dev, master ]
 
 jobs:
   trivy-scan:
