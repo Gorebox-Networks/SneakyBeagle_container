@@ -25,6 +25,9 @@ RUN apt-get update && apt-get install -y apt-utils curl netcat-traditional gnupg
     nikto wget ssh net-tools git nfs-common tcpdump seclists inetutils-traceroute vim golang-go libreadline-dev libpq5 libpq-dev readline-common \
     subversion git-core autoconf zlib1g-dev libxml2-dev libxslt1-dev libyaml-dev ruby1.9.1 nmap openssh-server zsh iputils-ping netdiscover hping3 libsqlite3-dev
 
+# Ensure the system is up to date
+RUN apt-get upgrade -y    
+
 # RedTeamToolkit
 
 # Python env
